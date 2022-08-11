@@ -1,4 +1,4 @@
-# invoicing
+# cashflow
 
 ## Vue Js setup
 ```
@@ -63,3 +63,19 @@ DEBUG=True
 ```
 python3 db_init.py
 ```
+
+### Run the file db_init.py to create all the tables in your MYSQL database.
+
+```
+python3 db_init.py
+```
+
+### Run the Flask app along with the vue js app in different terminals.
+
+```
+python3 main.py
+
+npm run serve 
+```
+
+### Navigate to http://localhost:8080 to see the app running.
