@@ -1,4 +1,4 @@
-# cashflow
+# invoicing
 
 ## Vue Js setup
 ```
