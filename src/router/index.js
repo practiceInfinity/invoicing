@@ -17,6 +17,8 @@ export default Router
 
 Router.beforeEach((to, from, next) => {
   var api = process.env.API;
+  next()
+  return
   if (to.path == "/" || to.path == "/signup" || to.path == "/forgot-password") {
     next()
   }

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import flask
 from sqlalchemy import func
 from flask_cors import CORS
@@ -150,6 +150,48 @@ def logout():
     if "user_id" in flask.session:
         session.clear()
     return flask.jsonify(ok=True)
+
+@app.route('/client-list', methods=['GET'])
+def get_client_list():
+    from models import Client
+
+    client_list = db.session.query(Client).all()
+    resp = [x.as_dict() for x in client_list]
+    return {
+        'data': resp
+    }
+
+@app.route('/client-add', methods=['POST'])
+def post_client_add():
+    from models import Client
+    import uuid
+    import datetime
+    jsn = request.json
+    
+    client = Client()
+    client.id = str(uuid.uuid4())
+    client.name = jsn.get('name', '')
+    client.vat_number = jsn.get('vatNumber', '')
+    client.currency_name = jsn.get('currency', '')
+    client.credit_limit = jsn.get('creditLimit', '')
+    client.address = jsn.get('address1', '')
+    client.address2 = jsn.get('address2', '')
+    client.address3 = jsn.get('address3', '')
+    client.address4 = jsn.get('address4', '')
+    client.postcode = jsn.get('postcode', '')
+    client.contact_name = jsn.get('contactName', '')
+    client.contact_email = jsn.get('contactEmail', '')
+    client.contact_number = jsn.get('contactNumber', '')
+    client.contact_mobile = jsn.get('contactMobile', '')
+    client.payment_due = jsn.get('paymentDue', '')
+    client.payment_due_unit_time = jsn.get('paymentDueUnitTime', '')
+    client.opening_balance = jsn.get('openingBalance', '')
+    client.opening_balance_at = jsn.get('openingBalanceAt', '')
+    client.created_at = datetime.datetime.now()
+    client.updated_at = datetime.datetime.now()
+    db.session.add(client)
+    db.session.commit()
+    return flask.jsonify(ok=True, message='Success Add Client')
 
 if __name__ == '__main__':
     app.run()

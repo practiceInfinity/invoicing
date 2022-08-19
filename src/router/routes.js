@@ -33,6 +33,16 @@ const routes = [
           name: "entity",
           component: () => import("../views/dashboard/Entity.vue"),
         },
+        {
+          path: "client",
+          name: "client",
+          component: () => import("../views/dashboard/ClientList.vue"),
+        },
+        {
+          path: "client-add",
+          name: "client-add",
+          component: () => import("../views/dashboard/ClientAdd.vue"),
+        },
       ],
     },
 ];

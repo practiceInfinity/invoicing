@@ -34,7 +34,10 @@
     </v-tabs>
 
     <select-entity class="autocomplete mr-8 my-4"></select-entity>
-    <v-card class="mx-8"> <router-view></router-view></v-card>
+    <!-- <v-card class="mx-8"> <router-view></router-view></v-card> -->
+    <v-container fluid>
+    <router-view></router-view>
+    </v-container>
 
     <v-footer app>
       <h5>@CashFlow</h5>
@@ -72,6 +75,12 @@ export default {
           icon: "mdi-account",
           text: "Company",
           link: "dashboard/entity",
+          model: false,
+        },
+        {
+          icon: "mdi-account",
+          text: "Client",
+          link: "dashboard/client",
           model: false,
         },
       ],
